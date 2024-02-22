@@ -34,3 +34,13 @@ The test `Installer_TemporaryKey.pfx` certificate is used to sign the installer 
     * Then, provision:
       * `$packageManager = [Windows.Management.Deployment.PackageManager]::new()` 
       * `$packageManager.ProvisionPackageForAllUsersAsync("DesktopClient_ek1grh0z258m2")`
+9. Observe the `TestWindowsService` being in the `Stopped` state and the package being force-updated to the version `2.0.0.0`.
+
+
+## Related Event Viewer events
+* Logs from the Event Viewer -> Application and Service Logs -> Microsoft -> Windows -> AppxDeployment-Server:
+  * `Started deployment OnDemandRegisterOperation operation on a package with main parameter , dependency parameters DesktopClient_1.0.0.0_neutral_~_ek1grh0z258m2, and Options ImmediatePriorityRequest and 0.`
+  * `OnDemandRegisterPackage found existing package WindowsService_1.0.0.0_x64__ek1grh0z258m2, set PACKAGE_STATUS_REGISTRATION_REQUIRED_BLOCKING`
+  * `Started deployment Register operation on a package with main parameter AppxBundleManifest.xml and Options ForceTargetApplicationShutdownOption,SkipReregisterIfPackageStatusOk,NormalPriorityRequest and SkipDeploymentOperationRpcCallerIsAdminCheck.`
+  * `Deployment Register operation on package WindowsService_2.0.0.0_neutral_~_ek1grh0z258m2 has been de-queued and is running for user`
+  * `0x0: TerminateApplications successful.`
