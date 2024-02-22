@@ -35,7 +35,7 @@ The test `Installer_TemporaryKey.pfx` certificate is used to sign the installer 
     * First, stage: `Add-AppxPackage "DesktopClient.Installer\AppPackages\DesktopClient.Installer_1.0.0.0_Debug_Test\DesktopClient.Installer_1.0.0.0_x64_Debug.msixbundle" -Stage`.
     * Then, provision:
       * `$packageManager = [Windows.Management.Deployment.PackageManager]::new()` 
-      * `$packageManager.ProvisionPackageForAllUsersAsync("DesktopClient_ek1grh0z258m2")`
+      * `$packageManager.ProvisionPackageForAllUsersAsync("DesktopClient_ek1grh0z258m2")` (family name can be different if a different certificate was used to sign the package)
 9. Observe the `TestWindowsService` being in the `Stopped` state and the package being force-updated to the version `2.0.0.0`.
 
 
