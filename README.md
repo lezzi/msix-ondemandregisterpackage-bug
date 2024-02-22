@@ -3,10 +3,10 @@
 This repository contains a reproducible example of a `PackageManager` issue that can unexpectedly terminate packaged services.
 
 ## Background
-* Running packaged services are terminated by the system when:
-  * A new packaged service update is deferred or staged.
-    * Either by using [`PackageManager.AddPackageByUriAsync`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.packagemanager.addpackagebyuriasync?view=winrt-22621) with [`DeferRegistrationWhenPackagesAreInUse : true`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.addpackageoptions.deferregistrationwhenpackagesareinuse?view=winrt-22621#windows-management-deployment-addpackageoptions-deferregistrationwhenpackagesareinuse).
-    * Or by using [`PackageManager.StagePackageByUriAsync`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.packagemanager.stagepackagebyuriasync?view=winrt-22621).
+Running packaged services are terminated by the system when:
+* A new packaged service update is deferred or staged.
+  * Either by using [`PackageManager.AddPackageByUriAsync`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.packagemanager.addpackagebyuriasync?view=winrt-22621) with [`DeferRegistrationWhenPackagesAreInUse : true`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.addpackageoptions.deferregistrationwhenpackagesareinuse?view=winrt-22621#windows-management-deployment-addpackageoptions-deferregistrationwhenpackagesareinuse).
+  * Or by using [`PackageManager.StagePackageByUriAsync`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.packagemanager.stagepackagebyuriasync?view=winrt-22621).
 * The [`PackageManager.ProvisionPackageForAllUsersAsync`](https://learn.microsoft.com/en-us/uwp/api/windows.management.deployment.packagemanager.provisionpackageforallusersasync?view=winrt-22621) API is used to provision any unrelated package, including default Microsoft ones, like OneDrive.
   * **Actual behavior:** This API triggers the `OnDemandRegisterPackage`, which then marks packaged services as `PACKAGE_STATUS_REGISTRATION_REQUIRED_BLOCKING` and then starts their registration with the `ForceTargetApplicationShutdownOption` flag.
   * **Expected behavior:**
