@@ -44,3 +44,5 @@ The test `Installer_TemporaryKey.pfx` certificate is used to sign the installer 
   * `Started deployment Register operation on a package with main parameter AppxBundleManifest.xml and Options ForceTargetApplicationShutdownOption,SkipReregisterIfPackageStatusOk,NormalPriorityRequest and SkipDeploymentOperationRpcCallerIsAdminCheck.`
   * `Deployment Register operation on package WindowsService_2.0.0.0_neutral_~_ek1grh0z258m2 has been de-queued and is running for user`
   * `0x0: TerminateApplications successful.`
+
+See `ondemandregisterpacakge-terminate-packaged-service.evtx` for more info (recorded starting from step 6).
