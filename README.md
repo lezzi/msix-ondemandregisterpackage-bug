@@ -20,7 +20,9 @@ This repository contains a reproducible example of a `PackageManager` issue that
 The test `Installer_TemporaryKey.pfx` certificate is used to sign the installer projects (password `Test@123`).
 
 1. Publish the `DesktopClient.Installer` project, for example, version `1.0.0.0`.
+    * This is an example package containing an empty desktop app, in real life any package can be used.
 2. Publish the `WindowsService.Installer` project, for example, version `1.0.0.0`.
+    * This is a package containing a Windows service.
 3. Publish the `WindowsService.Installer` project one more time, for example, version `2.0.0.0`.
 4. Using PowerShell (running as admin), install the `WindowsService.Installer_1.0.0.0_x64_Debug.msixbundle`, for example by using the:
     * `Add-AppxPackage "WindowsService.Installer\AppPackages\WindowsService.Installer_1.0.0.0_Debug_Test\WindowsService.Installer_1.0.0.0_x64_Debug.msixbundle"`.
